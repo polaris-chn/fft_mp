@@ -1,34 +1,33 @@
-// Author: brimonzzy
-// Create Date: 2025/2/13
-// Description: N-stage shift register with width W
+// Author: LR  (updated from brimonzzy)
+// Description: N-stage synchronous shift register, WIDTHidth WIDTH
+// Note: N must be >= 1
 
 module shiftreg #(
-  parameter W = 16,
-  parameter N = 8
-)(
-  input clk,
-  input rst_n,
-  input [W-1:0] d_in,
-  output [W-1:0] d_out
+    parameter WIDTH = 16,
+    parameter DEPTH = 8  // N >= 1
+) (
+    input             clk,
+    input             rst_n,
+    input  [WIDTH-1:0]    d_in,
+    output [WIDTH-1:0]    d_out
 );
 
-  reg [W-1:0] shift_reg [N-1:0];
-  integer i;
+    reg [WIDTH-1:0] shift_reg [0:DEPTH-1]; // clearer indexing
 
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      for (i = 0; i < N; i = i + 1) begin
-        shift_reg[i] <= {W{1'b0}};
-      end
+    integer i;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            for (i = 0; i < DEPTH; i = i + 1) begin
+                shift_reg[i] <= {WIDTH{1'b0}};
+            end
+        end else begin
+            shift_reg[0] <= d_in;
+            for (i = 1; i < DEPTH; i = i + 1) begin
+                shift_reg[i] <= shift_reg[i-1];
+            end
+        end
     end
-    else begin
-      shift_reg[0] <= d_in;
-      for (i = 1; i < N; i = i + 1) begin
-        shift_reg[i] <= shift_reg[i-1];
-      end
-    end
-  end
 
-  assign d_out = shift_reg[N-1];
+    assign d_out = shift_reg[DEPTH-1];
 
 endmodule

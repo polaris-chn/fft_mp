@@ -1,0 +1,9 @@
+/home/lr/fft_test/src/bf_rdx2.v
+/home/lr/fft_test/src/complex_arithmetic_param.v
+/home/lr/fft_test/src/fft_multipoint.v
+/home/lr/fft_test/src/reorder.v
+/home/lr/fft_test/src/reverse_bits.v
+/home/lr/fft_test/src/shiftreg.v
+/home/lr/fft_test/src/switch.v
+/home/lr/fft_test/src/twiddle_rom.v
+/home/lr/fft_test/tb/fft_multipoint_tb.v

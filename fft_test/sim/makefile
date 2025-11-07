@@ -1,6 +1,6 @@
 .PHONY: sim, verdi, clean
 
-PROJECT = fft_tb
+PROJECT = fft_multipoint
 
 VCS	= 	vcs \
 		-full64 \
