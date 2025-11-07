@@ -1,0 +1,8 @@
+# FFT Twiddle Factors
+# Number of factors: 4
+# Format: index, real, imaginary, magnitude, phase
+#--------------------------------------------------
+0 1.000000 0.000000
+1 1.000000 -0.785398
+2 1.000000 -1.570796
+3 1.000000 -2.356194
